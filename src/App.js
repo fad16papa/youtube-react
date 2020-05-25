@@ -1,7 +1,8 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, StylesProvider } from "@material-ui/core";
 import youtube from "./api/youtube";
 import { SearchBar, VideoDetail, VideoList } from "./components";
+import styles from "./App.module.css";
 
 class App extends React.Component {
   state = {
@@ -36,21 +37,23 @@ class App extends React.Component {
   render() {
     const { selectedVideo, videos } = this.state;
     return (
-      <Grid justify="center" container spacing={10}>
-        <Grid item xs={12}>
-          <Grid container spacing={10}>
-            <Grid item xs={12}>
-              <SearchBar onFormSubmit={this.handleSubmit} />
-            </Grid>
-            <Grid item xs={8}>
-              <VideoDetail video={selectedVideo} />
-            </Grid>
-            <Grid item xs={4}>
-              <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+      <div className={styles.container}>
+        <Grid justify="center" container spacing={10}>
+          <Grid item xs={12}>
+            <Grid container spacing={10}>
+              <Grid item xs={12}>
+                <SearchBar onFormSubmit={this.handleSubmit} />
+              </Grid>
+              <Grid item xs={8}>
+                <VideoDetail video={selectedVideo} />
+              </Grid>
+              <Grid item xs={4}>
+                <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
